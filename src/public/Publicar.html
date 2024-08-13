@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicar | Paginando Diário</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>Paginando Diário</h1>
+    <textarea></textarea>
+    <button onclick="PublicarPagina()">Publicar!</button>
+    <Button onclick="LimparPaginas()">Apagar Páginas!</Button>
+
+    <script>
+        function PublicarPagina() {
+            const entradaConteudo = document.querySelector("textarea")
+            const conteudo = entradaConteudo.value
+            const tempo = new Date().toLocaleDateString()
+            const resultados = JSON.parse(localStorage.getItem("diario") || "[]")
+            resultados.push({ tempo, conteudo })
+            const diario = JSON.stringify(resultados)
+            localStorage.setItem("diario", diario)
+            entradaConteudo.value = null
+        }
+        function LimparPaginas() {
+            localStorage.clear()
+        }
+    </script>
+</body>
+</html>
